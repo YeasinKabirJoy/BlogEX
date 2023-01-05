@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                <a class="backButton" href="{% url 'account' %}"><i class="fa-sharp fa-solid fa-angle-left"></i></a>
+                <br>
+
+                <form class="form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {% for fields in form %}
+                        <!-- Input:Text -->
+                    <div class="form__field">
+                        <label for="formInput#text">{{ fields.label }}</label>
+                        {{ fields }}
+                    </div>
+
+                    {% endfor %}
+
+                    <div class="form__field">
+                        {% for tag in blog.tags.all %}
+                            <div class="project-tag tag tag--pill tag--main" data-tag="{{ tag.id }}" data-blog="{{ blog.id }}">{{ tag.name }} &#215;</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form__field">
+                        <label for="formInput#text">Tags</label>
+                        <textarea class="input" name="newtags" placeholder="Add tags (space or comma separated)"></textarea>
+                    </div>
+
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+
+{% endblock %}
+
+
+

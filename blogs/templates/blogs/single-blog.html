@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <main class="singleProject my-md">
+    <div class="container">
+      <div class="layout">
+
+        <div class="">
+          <img class="singleProject__preview" src="{{ blog.imgURL }}" alt="portfolio thumbnail" />
+            {% if blog.owner %}
+                <a href="{% url 'user-profile' blog.owner.id %}" class="singleProject__developer">{{ blog.owner.name }}</a>
+            {% else %}
+                <p class="singleProject__developer">By Deleted User</p>
+            {% endif %}
+
+
+          <h2 class="singleProject__title">{{ blog.title }}</h2>
+          <h3 class="singleProject__subtitle">Start Reading</h3>
+          <div class="singleProject__info" style="white-space: pre-wrap">{{ blog.description }}</div>
+
+        <div class="">
+          <h3 class="singleProject__subtitle">Fields</h3>
+          <div class="singleProject__toolStack">
+            {% for tag in blog.tags.all %}
+            <span class="tag tag--pill tag--sub tag--lg">
+              <small>{{ tag }}</small>
+            </span>
+            {% endfor %}
+          </div>
+          {% if blog.file %}
+          <a class="singleProject__liveLink" href="{{ blog.file.url}}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>PDF
+          </a>
+        {% endif %}
+        </div>
+
+          <div class="comments">
+            <h3 class="singleProject__subtitle">Feedback</h3>
+            <h5 class="project--rating">
+              {{ blog.vote_ratio }} Positive Feedback ({{ blog.vote_total }} Vote{{ blog.vote_total | pluralize:"s" }})
+            </h5>
+
+            {% if request.user.profile.id in blog.reviewers%}
+                <p>You have already submitted your review for this blog</p>
+            {% elif request.user.profile == blog.owner %}
+                <p>You can't review you own blog</p>
+            {% elif request.user.is_authenticated %}
+                <form class="form" action="{% url 'single-blog' blog.slug %}" method="POST">
+                 {% csrf_token %}
+                 {% for fields in form %}
+                  <div class="form__field">
+                    <label for="formInput#textarea">{{ fields.label }}</label>
+                    {{ fields }}
+                  </div>
+                  {% endfor %}
+                  <input class="btn btn--sub btn--lg" type="submit" value="Add Review" />
+                </form>
+             {% else %}
+                <a href="{% url 'login'%}?next={{ request.path }}" >Please log in to review the blog</a>
+           {% endif %}
+
+            <div class="commentList">
+             {% for comment in blog.review_set.all %}
+                {% if comment.review_text %}
+                <div class="comment">
+                <a href="{% url 'user-profile' comment.owner.id %}">
+                  <img class="avatar avatar--md"
+                    src="{{ comment.owner.imgURL }}" alt="user" />
+                </a>
+
+                <div class="comment__details">
+                  <a href="{% url 'user-profile' comment.owner.id %}" class="comment__author">{{ comment.owner.name }}</a>
+                  <p class="comment__info">{{ comment.review_text | linebreaks }}</p>
+                </div>
+
+              </div>
+              {% endif %}
+              {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+
+{% endblock content %}
+

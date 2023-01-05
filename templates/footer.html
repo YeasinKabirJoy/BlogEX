@@ -1,0 +1,21 @@
+{% load static %}
+
+
+<header class="header">
+    <div class="container">
+      <div class="item">
+       <a href="{% url 'profiles' %}" class="header__logo">
+        <img src="{% static 'images/logo.svg' %}" alt="BlogEx Logo"/>
+      </a>
+      </div>
+
+        <div class="header__menuItem">
+            <p class="footer--text">Sk. Yeasin Kabir Joy</p>
+        </div>
+
+      <div class="header__menuItem">
+          <p class="footer--text" id="date-time"></p>
+      </div>
+</div>
+</header>
+
