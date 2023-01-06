@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html>
-<title>Wrong address</title>
-<body>
+{% extends 'index.html' %}
 
-<h1>Ooops!</h1>
+{% block content %}
 
-<h2>I cannot find the file you requested!</h2>
+     <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper" style="height: 60vh;alignment: center">
 
-</body>
-</html>
+                    <h1>Ooops!</h1>
+
+                    <h2>I cannot find the page you requested!</h2>
+
+            </div>
+        </div>
+    </main>
+{% endblock content %}

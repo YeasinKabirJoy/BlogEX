@@ -27,13 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-tl+wpvnm(j$p#*h!d5nry@lvrph=lup@ft5*4rbx6minu4!0p+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','blogex-production.up.railway.app']
 
 CSRF_TRUSTED_ORIGINS = ['https://blogex-production.up.railway.app/',]
 
-CSRF_TRUSTED_ORIGINS = ['127.0.0.1','https://blogex-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1','https://blogex-production.up.railway.app']
 
 
 # Application definition
