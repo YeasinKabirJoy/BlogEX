@@ -57,6 +57,7 @@ img {
   font-weight: 300;
 }
 
+
 .toggle-menu > span {
   display: none;
 }
@@ -479,7 +480,7 @@ img {
   font-size: 2.4rem;
   font-weight: 700;
   color: var(--color-sub-light);
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 /*=======================
