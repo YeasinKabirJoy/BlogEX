@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-tl+wpvnm(j$p#*h!d5nry@lvrph=lup@ft5*4rbx6minu4!0p+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = Trur
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','blogex-production.up.railway.app']
 
